@@ -12,6 +12,7 @@ Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);
 #define SHIP_W 8
 #define SHIP_H 8
 
+// Bitmaps
 static unsigned char PROGMEM ship_bmp[] =
 { B00011000, 
   B00100100,
@@ -108,13 +109,10 @@ void loop(){
       display.display(); 
       delay(2000);
       while(digitalRead(midBtnPin) == LOW){
-      }
-  
+      } 
       started = true;
-  
   } 
-  
-  
+    
   // Show score at top left corner of display
   display.setCursor(0,0);
   display.println(score);    
@@ -142,6 +140,7 @@ void loop(){
     // Set the shot X coodinate as the same as the ship
     shot_x = ship_x;
     
+    // Beep!
     tone(12, 440, 250);
   }
   
@@ -211,8 +210,8 @@ void loop(){
      ufo_y = 0;
    
    
-  // Check collisions between the ship and the UFO
-  if (ufo_y > 32 && (ufo_x >= ship_x && ufo_x < ship_x + SHIP_W)){
+  // Check collisions between the ship and the UFO OR if the UFO got passed the ship
+  if ((ufo_y > 32 && (ufo_x >= ship_x && ufo_x < ship_x + SHIP_W)) || (ufo_y > 40)){
     lives--;
     tone(12, 100, 500);
     if (lives == 0){
