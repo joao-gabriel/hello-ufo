@@ -247,8 +247,6 @@ void loop(){
   
   display.drawBitmap(ufo_x, ufo_y,  ufo_bmp, SHIP_W, SHIP_H, 1);
   
-  display.drawPixel(random(83), random(47), 1);
-  
   // ship display
   display.drawBitmap(ship_x, 40,  ship_bmp, SHIP_W, SHIP_H, 1);
   display.display();  
